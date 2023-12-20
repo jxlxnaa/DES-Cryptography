@@ -25,11 +25,14 @@ def initial_permutation(byte_sequence: str):
 
     return "".join(new_bytes)
 
+def split_lpt_rpt(bytes: list) -> tuple:
+    return bytes[:32], bytes[32:]
+
 def main():
     plain_text: str = "Jelena je lepa"
     byte_sequences: list = split_binary_text(str2bin(plain_text))
-    print(byte_sequences)
-    byte_permutation: map = list(map(initial_permutation, byte_sequences))
-        
+    byte_permutation: list = list(map(initial_permutation, byte_sequences)) #map poziva funkciju initial_permutation nad svakim elementom byte_sequence
+    splited_bytes: list = list(map(split_lpt_rpt, byte_permutation))
+    print(len(splited_bytes[1][0]), len(splited_bytes[1][1]))
 
 main()
